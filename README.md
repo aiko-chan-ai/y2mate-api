@@ -20,6 +20,8 @@ client.info("Kirara Magic - Summer Dream (feat. Chevy)", "vi")
 .then(result => {
     // Search result
     console.log(result);
+    // get first result
+    return result.results[0].fetch();
 })
 .then(result => {
     // Detail result
