@@ -1,0 +1,48 @@
+{
+  "name": "y2mate-api",
+  "version": "0.0.1",
+  "description": "Unofficial Y2mate API for Nodejs",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "tsup": {
+    "entry": [
+      "src/index.ts"
+    ],
+    "splitting": false,
+    "sourcemap": true,
+    "clean": true,
+    "dts": true,
+    "format": ["esm"],
+    "target": "es2020"
+  },
+  "scripts": {
+    "npmb": "tsup",
+    "build": "tsc",
+    "format": "prettier --write 'src/**/*.ts'",
+    "format:check": "prettier 'src/**/*.ts'",
+    "lint": "eslint 'src/**/*.ts'",
+    "lint:fix": "eslint --fix 'src/**/*.ts'",
+    "test": "node ./test/index.js"
+  },
+  "keywords": [
+    "youtube",
+    "video",
+    "download",
+    "y2mate"
+  ],
+  "author": "aiko-chan-ai",
+  "license": "ISC",
+  "dependencies": {
+    "format-duration": "^3.0.2",
+    "node-fetch": "^3.3.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.54.0",
+    "@typescript-eslint/parser": "^5.54.0",
+    "eslint": "^8.35.0",
+    "prettier": "^2.8.4",
+    "tsup": "^6.6.3",
+    "typescript": "^4.9.5"
+  }
+}
