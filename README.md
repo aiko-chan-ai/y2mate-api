@@ -7,6 +7,9 @@ npm install y2mate-api
 ```
 
 ## Usage
+
+#### Search video, get first result, get mp4 format (1080p = 137)
+
 ```js
 import Y2MateClient from 'y2mate-api'
 
@@ -29,7 +32,11 @@ client.info("Kirara Magic - Summer Dream (feat. Chevy)", "vi")
     console.log(result);
 });
 ```
+
+
 > **Log**
+
+
 ```js
 Y2MateSearchResult {
   page: 'search',
@@ -94,6 +101,8 @@ Y2MateDownload {
 }
 ```
 
+#### URL Video, get mp4 format (1080p = 137)
+
 ```js
 import Y2MateClient from 'y2mate-api'
 
@@ -112,7 +121,11 @@ client.info("https://www.youtube.com/watch?v=ZxV8HuJX0KM", "vi")
     console.log(result);
 });
 ```
+
+
 > **Log**
+
+
 ```js
 Y2MateDetail {
   status: 'ok',
@@ -165,7 +178,7 @@ Y2MateDownload {
 }
 ```
 
-### Typing
+## Typing
 
 ```ts
 interface Y2MateVideoPartialRaw {
