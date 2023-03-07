@@ -7,6 +7,8 @@ import {
   Y2MateVideoDetailRaw,
   Y2MateVideoSearchResultRaw,
   Y2MateVideoDownloadRaw,
+  Y2MatePlaylist,
+  Y2MatePlaylistRaw,
 } from "./struct.js";
 
 class Y2MateClient {
@@ -18,9 +20,9 @@ class Y2MateClient {
      */
     this.userAgent = typeof userAgent === "string" ? userAgent : constants.userAgent;
   }
-  getVideo(url: string, languageCode: string = "en"): Promise<Y2MateVideoDetail> {
+  getFromURL(url: string, languageCode: string = "en"): Promise<Y2MateVideoDetail|Y2MatePlaylist> {
     if (typeof url !== "string") throw new Error("URL is required");
-    if (!constants.regex.test(url)) throw new Error("Invalid URL");
+    if (!constants.regex.test(url)) throw new Error("Invalid URL " + url);
     return this._info(url, languageCode);
   }
   searchVideo(keyword: string, languageCode: string = "en"): Promise<Y2MateSearchResult> {
@@ -32,7 +34,7 @@ class Y2MateClient {
    * Fetch information of a video
    * @param {string} keyword
    * @param {string} languageCode
-   * @returns {Promise<Y2MateSearchResult|Y2MateVideoDetail>}
+   * @returns {Promise<Y2MateSearchResult|Y2MateVideoDetail|Y2MatePlaylist>}
    */
   private _info(keyword: string, languageCode: string = "en"): Promise<any> {
     if (typeof keyword !== "string") throw new Error("Keyword is required");
@@ -63,8 +65,8 @@ class Y2MateClient {
           return res.json();
         })
         .then((d) => {
-          const data = d as Y2MateVideoDetailRaw | Y2MateVideoSearchResultRaw;
-          if (data.status !== "ok") return data?.mess! && reject(new Error(data.mess ?? "Unknown error"));
+          const data = d as Y2MateVideoDetailRaw | Y2MateVideoSearchResultRaw | Y2MatePlaylistRaw;
+          if (data.status !== "ok") return reject(new Error(`${JSON.stringify(data, null, 2)}`));
           switch (data.page) {
             case "detail": {
               return resolve(new Y2MateVideoDetail(this, data as Y2MateVideoDetailRaw));
@@ -72,8 +74,11 @@ class Y2MateClient {
             case "search": {
               return resolve(new Y2MateSearchResult(this, data as Y2MateVideoSearchResultRaw));
             }
+            case "playlist": {
+              return resolve(new Y2MatePlaylist(this, data as Y2MatePlaylistRaw));
+            }
             default: {
-              throw new Error("Unknown error");
+              throw new Error(`${JSON.stringify(data, null, 2)}`);
             }
           }
         })
@@ -115,3 +120,15 @@ class Y2MateClient {
   }
 }
 export default Y2MateClient;
+
+export {
+  Y2MateVideoDetail,
+  Y2MateSearchResult,
+  Y2MateDownload,
+  Y2MateVideoDetailRaw,
+  Y2MateVideoSearchResultRaw,
+  Y2MateVideoDownloadRaw,
+  Y2MatePlaylist,
+  Y2MatePlaylistRaw,
+  Y2MateClient,
+};

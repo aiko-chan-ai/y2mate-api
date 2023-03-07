@@ -1,6 +1,7 @@
 import formatDuration from "format-duration";
 import Y2MateClient from "./index";
 
+export type Y2MateType = "detail" | "search" | "playlist";
 export interface Y2MateVideoPartialRaw {
   t: string;
   v: string;
@@ -28,7 +29,7 @@ export class PartialY2MateVideoDetail {
    * @returns {Promise<Y2MateVideoDetail>}
    */
   fetch(): Promise<Y2MateVideoDetail> {
-    return this.client.getVideo(`https://www.youtube.com/watch?v=${this.videoId}`);
+    return this.client.getFromURL(`https://www.youtube.com/watch?v=${this.videoId}`) as Promise<Y2MateVideoDetail>;
   }
   /**
    * Thumbnail URL of the video
@@ -42,7 +43,7 @@ export class PartialY2MateVideoDetail {
 export interface Y2MateVideoDetailRaw {
   status: string;
   mess: string;
-  page: string;
+  page: Y2MateType;
   vid: string;
   extractor: string;
   title: string;
@@ -60,7 +61,7 @@ export class Y2MateVideoDetail {
   client!: Y2MateClient;
   status: string;
   message: string;
-  page: string;
+  page: Y2MateType;
   videoId: string;
   extractor: string;
   title: string;
@@ -82,7 +83,7 @@ export class Y2MateVideoDetail {
      */
     this.message = data.mess;
     /**
-     * Page of the request (detail, search)
+     * Page of the request (detail, search, playlist)
      * @type {string}
      */
     this.page = data.page;
@@ -222,7 +223,7 @@ export class Y2MateDownloadLink {
 }
 
 export interface Y2MateVideoSearchResultRaw {
-  page: string;
+  page: Y2MateType;
   status: string;
   keyword: string;
   vitems: Array<Y2MateVideoPartialRaw>;
@@ -231,14 +232,14 @@ export interface Y2MateVideoSearchResultRaw {
 
 export class Y2MateSearchResult {
   client!: Y2MateClient;
-  page: string;
+  page: Y2MateType;
   status: string;
   keyword: string;
   results: Array<PartialY2MateVideoDetail>;
   constructor(client: Y2MateClient, data: Y2MateVideoSearchResultRaw) {
     Object.defineProperty(this, "client", { value: client });
     /**
-     * Page of the request (detail, search)
+     * Page of the request (detail, search, playlist)
      * @type {string}
      */
     this.page = data.page;
@@ -328,5 +329,71 @@ export class Y2MateDownload {
    */
   get thumbnail() {
     return `https://i.ytimg.com/vi/${this.videoId}/0.jpg`;
+  }
+}
+
+export interface Y2MatePlaylistRaw {
+  status: string;
+  mess: string;
+  vitems: Array<Y2MateVideoPartialRaw>;
+  keyword: string;
+  title: string;
+  thumbnail: string;
+  page: Y2MateType;
+  playlistId: string;
+}
+
+export class Y2MatePlaylist {
+  client!: Y2MateClient;
+  status: string;
+  message: string;
+  videos: Array<PartialY2MateVideoDetail>;
+  keyword: string;
+  title: string;
+  thumbnail: string;
+  page: Y2MateType;
+  playlistId: string;
+  constructor(client: Y2MateClient, data: Y2MatePlaylistRaw) {
+    Object.defineProperty(this, "client", { value: client });
+    /**
+     * Status of the request
+     * @type {string}
+     */
+    this.status = data.status;
+    /**
+     * Message of the request
+     * @type {string}
+     */
+    this.message = data.mess;
+    /**
+     * Videos of the playlist
+     * @type {Array<PartialY2MateVideoDetail>}
+     */
+    this.videos = data.vitems.map((o) => new PartialY2MateVideoDetail(client, o));
+    /**
+     * Keyword of the search
+     * @type {string}
+     */
+    this.keyword = data.keyword;
+    /**
+     * Title of the playlist
+     * @type {string}
+     */
+    this.title = data.title;
+    /**
+     * Thumbnail of the playlist
+     * @type {string}
+     */
+    this.thumbnail = data.thumbnail;
+    /**
+     * Page of the request (detail, search, playlist)
+     * @type {string}
+     */
+    this.page = data.page;
+    /**
+     * Playlist ID
+     * @type {string}
+     */
+    this.playlistId = data.playlistId;
   }
 }
