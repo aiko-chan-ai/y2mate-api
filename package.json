@@ -1,6 +1,6 @@
 {
   "name": "y2mate-api",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Unofficial Y2mate API for Nodejs",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,17 +13,17 @@
     "sourcemap": true,
     "clean": true,
     "dts": true,
-    "format": ["esm"],
+    "format": [
+      "esm"
+    ],
     "target": "es2020"
   },
   "scripts": {
     "npmb": "tsup",
     "build": "tsc",
-    "format": "prettier --write 'src/**/*.ts'",
-    "format:check": "prettier 'src/**/*.ts'",
-    "lint": "eslint 'src/**/*.ts'",
-    "lint:fix": "eslint --fix 'src/**/*.ts'",
-    "test": "node ./test/index.js"
+    "format": "prettier --write ./src/*.ts",
+    "format:check": "prettier ./src/*.ts",
+    "test": "node ./test/searchVideo.js"
   },
   "keywords": [
     "youtube",
@@ -31,6 +31,14 @@
     "download",
     "y2mate"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aiko-chan-ai/y2mate-api"
+  },
+  "bugs": {
+    "url": "https://github.com/aiko-chan-ai/y2mate-api/issues"
+  },
+  "homepage": "https://github.com/aiko-chan-ai/y2mate-api",
   "author": "aiko-chan-ai",
   "license": "ISC",
   "dependencies": {

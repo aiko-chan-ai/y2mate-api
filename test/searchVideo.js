@@ -2,7 +2,7 @@ import Y2MateClient from "../dist/index.js";
 
 const client = new Y2MateClient();
 
-client.info("Kirara Magic - Summer Dream (feat. Chevy)", "vi")
+client.searchVideo("Kirara Magic - Summer Dream (feat. Chevy)", "vi")
 .then(result => {
     // Search result
     console.log(result);
@@ -26,57 +26,57 @@ Y2MateSearchResult {
   status: 'ok',
   keyword: 'Kirara Magic - Summer Dream (feat. Chevy)',
   results: [
-    PartialY2MateDetail {
+    PartialY2MateVideoDetail {
       title: 'Kirara Magic - Summer Dream (feat. Chevy)',
       videoId: 'ZxV8HuJX0KM'
     },
-    PartialY2MateDetail {
+    PartialY2MateVideoDetail {
       title: 'Kirara Magic - Summer Dream (feat. Chevy)',
       videoId: 'exiFmFf8Hz4'
     },
-    PartialY2MateDetail {
+    PartialY2MateVideoDetail {
       title: 'Kirara Magic - Summer Dream (feat. Chevy) (Lyrics)',
       videoId: 'm6bE6dPxjBI'
     },
-    PartialY2MateDetail {
+    PartialY2MateVideoDetail {
       title: 'Kirara Magic (feat . Chevy) - Summer Dream',
       videoId: '6yZYkGsKE3A'
     },
-    PartialY2MateDetail {
+    PartialY2MateVideoDetail {
       title: 'Kirara Magic - Summer Dream (feat. Chevy)',
       videoId: 'np2vNCBYsw8'
     },
-    PartialY2MateDetail {
+    PartialY2MateVideoDetail {
       title: 'Nightcore - Summer Dream (Kirara Magic feat. Chevy / Lyrics)',
       videoId: 'ooOPgNYwiuo'
     },
-    PartialY2MateDetail {
+    PartialY2MateVideoDetail {
       title: 'Kirara Magic - Summer Dream (feat. Chevy) ♪',
       videoId: 'zh-RdlIcVs4'
     },
-    PartialY2MateDetail {
+    PartialY2MateVideoDetail {
       title: 'Kirara Magic - Good Dream (feat. Shion) MV',
       videoId: 'xJTFa8fEiv4'
     },
-    PartialY2MateDetail {
+    PartialY2MateVideoDetail {
       title: 'Kirara Magic - Summer Dream (feat. Chevy)',
       videoId: '-mm3Bca-xIo'
     },
-    PartialY2MateDetail {
+    PartialY2MateVideoDetail {
       title: 'Active Arcade Superhits- Summer Dream (Kirara Magic and Chevy)',
       videoId: '91LpnFBbmA0'
     },
-    PartialY2MateDetail {
+    PartialY2MateVideoDetail {
       title: 'Kirara Magic - Summer Dream (feat. Chevy)',
       videoId: 'BNM9HpnkyJI'
     },
-    PartialY2MateDetail {
+    PartialY2MateVideoDetail {
       title: 'Kirara Magic - Summer Dream (feat. Chevy)',
       videoId: 'mwWj_UDKsLE'
     }
   ]
 }
-Y2MateDetail {
+Y2MateVideoDetail {
   status: 'ok',
   message: '',
   page: 'detail',
@@ -170,79 +170,79 @@ Y2MateDetail {
     }
   },
   related: [
-    PartialY2MateDetail {
+    PartialY2MateVideoDetail {
       title: 'Kirara Magic - Floating Star (feat. Shion)',
       videoId: 't9CKSSG96DU'
     },
-    PartialY2MateDetail {
+    PartialY2MateVideoDetail {
       title: '𝒑𝒍𝒂𝒚𝒍𝒊𝒔𝒕 | cute songs by Chevy & Nalba | soft sunday morning indie vibes | chill, study'        ,
       videoId: '03sQLOucmvk'
     },
-    PartialY2MateDetail {
+    PartialY2MateVideoDetail {
       title: 'Kirara Magic - A Cafe By The Sea [full album]',
       videoId: 'CtNK1qV9WoE'
     },
-    PartialY2MateDetail {
+    PartialY2MateVideoDetail {
       title: 'cinnamons × evening cinema - summertime (Official Music Video)',
       videoId: 'KMTo2LmixqQ'
     },
-    PartialY2MateDetail {
+    PartialY2MateVideoDetail {
       title: 'Mix - Kawaii Future Bass Lightly , Kawaii EDM Lightly , Sleep Music (Part 1)',
       videoId: 'DRQ6FbvjThY'
     },
-    PartialY2MateDetail {
+    PartialY2MateVideoDetail {
       title: 'Summer Dream',
       videoId: '2__8PrNIHIs'
     },
-    PartialY2MateDetail {
+    PartialY2MateVideoDetail {
       title: '【Studying Piano Music】3 Hour Beautiful Piano Music For Studying and Concentrating',
       videoId: '8sJk9AE82kc'
     },
-    PartialY2MateDetail {
+    PartialY2MateVideoDetail {
       title: 'Kirara Magic - Summer Dream (feat. Chevy)',
       videoId: 'exiFmFf8Hz4'
     },
-    PartialY2MateDetail {
+    PartialY2MateVideoDetail {
       title: 'Kirara Magic - Summer Dream (feat. Chevy) (Lyrics)',
       videoId: 'm6bE6dPxjBI'
     },
-    PartialY2MateDetail {
+    PartialY2MateVideoDetail {
       title: 'Kirara Magic - Kagetsu',
       videoId: 'UzDT-lWNShU'
     },
-    PartialY2MateDetail {
+    PartialY2MateVideoDetail {
       title: 'Kirara Magic & Ulchero - Online Fantasy (feat. Moon Jelly)',
       videoId: 'PXfiPh3su7k'
     },
-    PartialY2MateDetail {
+    PartialY2MateVideoDetail {
       title: 'Summer Dream - beats to sleep/study x Fall In Luv',
       videoId: '-hnbYK5JOx8'
     },
-    PartialY2MateDetail {
+    PartialY2MateVideoDetail {
       title: "Album 'Magic Shop'",
       videoId: 'HdkzfQ_miAo'
     },
-    PartialY2MateDetail {
+    PartialY2MateVideoDetail {
       title: 'Kirara Magic - Good Dream (feat. Shion) MV',
       videoId: 'xJTFa8fEiv4'
     },
-    PartialY2MateDetail {
+    PartialY2MateVideoDetail {
       title: 'Daydream Cafe (feat. Shion Lee)',
       videoId: 'tNf3SgtiAi0'
     },
-    PartialY2MateDetail {
+    PartialY2MateVideoDetail {
       title: '【作業用BGM】Setsuna (Kirara Magic Remix) 百鬼あやめ2021ED【Extended】',
       videoId: '50M2mMwfr-Q'
     },
-    PartialY2MateDetail {
+    PartialY2MateVideoDetail {
       title: 'Kirara Magic - Aurora (feat. Shion)',
       videoId: 'WE9ZsbA2TXw'
     },
-    PartialY2MateDetail {
+    PartialY2MateVideoDetail {
       title: 'Kirara Magic - Aurora VIP (feat. Shion)',
       videoId: 'niVyVKo721g'
     },
-    PartialY2MateDetail {
+    PartialY2MateVideoDetail {
       title: 'Kirara Magic & Couple N - Treasure (feat. taobien)',
       videoId: 'QwSceQOdVlg'
     }

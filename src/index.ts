@@ -1,7 +1,7 @@
 import constants from "./constants.js";
 import fetch from "node-fetch";
 import {
-  Y2MateDetail,
+  Y2MateVideoDetail,
   Y2MateSearchResult,
   Y2MateDownload,
   Y2MateVideoDetailRaw,
@@ -18,13 +18,23 @@ class Y2MateClient {
      */
     this.userAgent = typeof userAgent === "string" ? userAgent : constants.userAgent;
   }
+  getVideo(url: string, languageCode: string = "en"): Promise<Y2MateVideoDetail> {
+    if (typeof url !== "string") throw new Error("URL is required");
+    if (!constants.regex.test(url)) throw new Error("Invalid URL");
+    return this._info(url, languageCode);
+  }
+  searchVideo(keyword: string, languageCode: string = "en"): Promise<Y2MateSearchResult> {
+    if (typeof keyword !== "string") throw new Error("Keyword is required");
+    if (constants.regex.test(keyword)) throw new Error("Invalid keyword (URL is not allowed)");
+    return this._info(keyword, languageCode);
+  }
   /**
    * Fetch information of a video
    * @param {string} keyword
    * @param {string} languageCode
-   * @returns {Promise<Y2MateSearchResult|Y2MateDetail>}
+   * @returns {Promise<Y2MateSearchResult|Y2MateVideoDetail>}
    */
-  info<T extends Y2MateSearchResult | Y2MateDetail>(keyword: string, languageCode: string = "en") {
+  private _info(keyword: string, languageCode: string = "en"): Promise<any> {
     if (typeof keyword !== "string") throw new Error("Keyword is required");
     if (typeof languageCode !== "string") throw new Error("Language code is required");
     if (!constants.languageCode[languageCode as keyof typeof constants.languageCode])
@@ -33,7 +43,7 @@ class Y2MateClient {
           constants.languageCode,
         ).join(", ")}`,
       );
-    return new Promise<T>((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       fetch("https://www.y2mate.com/mates/analyzeV2/ajax", {
         method: "POST",
         headers: {
@@ -57,18 +67,16 @@ class Y2MateClient {
           if (data.status !== "ok") return data?.mess! && reject(new Error(data.mess ?? "Unknown error"));
           switch (data.page) {
             case "detail": {
-              return new Y2MateDetail(this, data as Y2MateVideoDetailRaw);
+              return resolve(new Y2MateVideoDetail(this, data as Y2MateVideoDetailRaw));
             }
             case "search": {
-              return new Y2MateSearchResult(this, data as Y2MateVideoSearchResultRaw);
+              return resolve(new Y2MateSearchResult(this, data as Y2MateVideoSearchResultRaw));
             }
             default: {
               throw new Error("Unknown error");
             }
           }
         })
-        // @ts-ignore
-        .then(resolve)
         .catch((err) => reject(err));
     });
   }
